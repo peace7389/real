@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+
+<script>
+    // Generate random data
+    var xValues = [];
+    var yValues = [];
+    for (var i = 0; i < 100; i ++) {
+        xValues.push(i);
+        yValues.push(Math.random());
+    }
+
+    // Create the data array
+    var data = [{
+        x: xValues,
+        y: yValues,
+        mode: 'lines',
+        line: {shape: 'spline'}
+    }];
+
+    // Define the plot layout
+    var layout = {
+        title: 'Random Data Line Chart',
+        xaxis: {title: 'X Value'},
+        yaxis: {title: 'Random Y Value'}
+    };
+
+    // Plot the chart to a div tag with id "myDiv"
+    Plotly.newPlot('myDiv', data, layout);
+</script>
+
+</body>
+</html>

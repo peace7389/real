@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="./static/nflux/css/reset_css.css">
+    <link rel="stylesheet" type="text/css" href="./static/nflux/css/style.css">
+    <link href="/static/css/app.ce573070bfc25f04c4612c7ce579338e.css" rel="stylesheet">
+    <style>
+        .scorecards {
+            position: absolute;
+            width: 7rem;
+            height: 3.5rem;
+            background: rgba(16, 18, 25, 0.4);
+            border: 1px solid rgba(133, 147, 232, 0.3);
+            backdrop-filter: blur(2px);
+        }
+        .Asset {
+            position: relative;
+            width: 80%;
+            height: auto;
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hoverArea {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="36" height="34" viewBox="0 0 36 34" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(%23filter0_d_59_472)"><path d="M30.6921 17C30.6921 23.9559 24.8233 29.62 17.5521 29.62C10.2809 29.62 4.4121 23.9559 4.4121 17C4.4121 10.0441 10.2809 4.38 17.5521 4.38C24.8233 4.38 30.6921 10.0441 30.6921 17Z" stroke="%2355DB7F" stroke-opacity="0.8" stroke-width="0.76"/><ellipse cx="17.5521" cy="17" rx="13.52" ry="13" fill="%232A8744" fill-opacity="0.65"/><path d="M15.2308 24L9.3108 9.99998H14.3908L19.2108 21.82H16.1908L21.1508 9.99998H25.7908L19.8708 24H15.2308Z" fill="white"/></g><defs><filter id="filter0_d_59_472" x="0.0321045" y="0" width="35.04" height="34" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0.126852 0 0 0 0 1 0 0 0 0 0.403349 0 0 0 0.35 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_59_472"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_59_472" result="shape"/></filter></defs></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-radius: 100%;
+        }
+    </style>
+    <title>Data Visualization</title>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+</head>
+
+<body>
+    <div id="controls">
+        <label for="columns">Select Value Columns:</label>
+        <select id="columns" multiple>
+            <option value="e18pi053ba">e18pi053ba</option>
+            <option value="e18pi057a">e18pi057a</option>
+            <option value="e18pi880aa">e18pi880aa</option>
+            <option value="e18pi882ha">e18pi882ha</option>
+            <option value="e18si883aa">e18si883aa</option>
+            <option value="e18si883ba">e18si883ba</option>
+            <option value="e18ti256a">e18ti256a</option>
+            <option value="e18ti257aa">e18ti257aa</option>
+            <option value="e18ti284a">e18ti284a</option>
+            <option value="e18ti881ba">e18ti881ba</option>
+            <option value="e18ti881ca">e18ti881ca</option>
+            <option value="e18ti881da">e18ti881da</option>
+            <option value="e18ti881ea">e18ti881ea</option>
+            <option value="e18ti881fa">e18ti881fa</option>
+            <option value="e18ti881ga">e18ti881ga</option>
+            <option value="e18ti881ha">e18ti881ha</option>
+            <option value="e18ti881ja">e18ti881ja</option>
+            <option value="e18ti881ka">e18ti881ka</option>
+            <option value="e18ti881la">e18ti881la</option>
+            <option value="e18ti882aa">e18ti882aa</option>
+            <option value="e18ti882ba">e18ti882ba</option>
+            <option value="e18ti882ca">e18ti882ca</option>
+            <option value="e18ti882da">e18ti882da</option>
+            <option value="e18ti882ea">e18ti882ea</option>
+            <option value="e18ti882fa">e18ti882fa</option>
+            <option value="e18ti882ga">e18ti882ga</option>
+            <option value="e18ti882ha">e18ti882ha</option>
+            <option value="e18ti882ja">e18ti882ja</option>
+            <option value="e18ti882ka">e18ti882ka</option>
+            <option value="e18ti882la">e18ti882la</option>
+        </select>
+    </div>
+
+    <div class="scorecards">
+        <div class="pig_contents_inner">
+            <ul class="pis_tag_type02">
+                <li>
+                    <img src="icon_v_green.svg" alt="">
+                </li> 
+                <li class="pis_data">
+                    <div class="pis_tit">Vib(mm)</div> 
+                    <p>-0.19</p> 
+                    <span class="data_tag">E18ZI881AA</span>
+                </li>
+            </ul> 
+            <p class="line_pointer"></p> 
+        </div>
+
+        <div class="scorecards" style="flex: 1; border-radius: 25px; padding: 10px; background-color: #e8f4f9; height: 100px; display: flex; justify-content: center; align-items: center;">Scorecard 1</div>
+        <div class="scorecards" style="flex: 1; border-radius: 25px; padding: 10px; background-color: #e8f4f9; height: 100px; display: flex; justify-content: center; align-items: center;">Scorecard 2</div>
+        <div class="scorecards" style="flex: 1; border-radius: 25px; padding: 10px; background-color: #e8f4f9; height: 100px; display: flex; justify-content: center; align-items: center;">Scorecard 3</div>
+        <div class="scorecards" style="flex: 1; border-radius: 25px; padding: 10px; background-color: #e8f4f9; height: 100px; display: flex; justify-content: center; align-items: center;">Scorecard 4</div>
+    </div>
+
+    <div id="hiddenChartContainer" style="display: none;"></div>
+    <div class="Asset" style="position: relative;">
+        <img src="pis.png" alt="back_ground" style="width: 100%;">
+        <div class="hoverArea" data-options="e18pi053ba" style="position: absolute; top: 0%; left: 20.0%;"></div>
+        <div class="hoverArea" data-options="e18pi057a" style="position: absolute; top: 0%; left: 33.2%;"></div>
+        <div class="hoverArea" data-options="e18pi880aa" style="position: absolute; top: 30%; left: 30%;"></div>
+        <div class="hoverArea" data-options="e18pi882ha" style="position: absolute; top: 40%; left: 40%;"></div>
+        <div class="hoverArea" data-options="e18si883aa" style="position: absolute; top: 50%; left: 50%;"></div>
+        <div class="hoverArea" data-options="e18si883ba" style="position: absolute; top: 60%; left: 60%;"></div>
+        <div class="hoverArea" data-options="e18ti256a" style="position: absolute; top: 0%; left: 21.4%;"></div>
+        <div class="hoverArea" data-options="e18ti257aa" style="position: absolute; top: 0%; left: 31.8%;"></div>
+        <div class="hoverArea" data-options="e18ti284a" style="position: absolute; top: 90%; left: 90%;"></div>
+        <div class="hoverArea" data-options="e18ti881ba" style="position: absolute; top: 49.5%; left: 10%;"></div>
+        <div class="hoverArea" data-options="e18ti881ca" style="position: absolute; top: 110%; left: 110%;"></div>
+        <div class="hoverArea" data-options="e18ti881da" style="position: absolute; top: 120%; left: 120%;"></div>
+        <div class="hoverArea" data-options="e18ti881ea" style="position: absolute; top: 130%; left: 130%;"></div>
+        <div class="hoverArea" data-options="e18ti881fa" style="position: absolute; top: 140%; left: 140%;"></div>
+        <div class="hoverArea" data-options="e18ti881ga" style="position: absolute; top: 150%; left: 150%;"></div>
+        <div class="hoverArea" data-options="e18ti881ha" style="position: absolute; top: 160%; left: 160%;"></div>
+        <div class="hoverArea" data-options="e18ti881ja" style="position: absolute; top: 170%; left: 170%;"></div>
+        <div class="hoverArea" data-options="e18ti881ka" style="position: absolute; top: 180%; left: 180%;"></div>
+        <div class="hoverArea" data-options="e18ti881la" style="position: absolute; top: 190%; left: 190%;"></div>
+        <div class="hoverArea" data-options="e18ti882aa" style="position: absolute; top: 49.5%; left: 98%;"></div>
+        <div class="hoverArea" data-options="e18ti882ba" style="position: absolute; top: 210%; left: 210%;"></div>
+        <div class="hoverArea" data-options="e18ti882ca" style="position: absolute; top: 220%; left: 220%;"></div>
+        <div class="hoverArea" data-options="e18ti882da" style="position: absolute; top: 230%; left: 230%;"></div>
+        <div class="hoverArea" data-options="e18ti882ea" style="position: absolute; top: 240%; left: 240%;"></div>
+        <div class="hoverArea" data-options="e18ti882fa" style="position: absolute; top: 250%; left: 250%;"></div>
+        <div class="hoverArea" data-options="e18ti882ga" style="position: absolute; top: 260%; left: 260%;"></div>
+        <div class="hoverArea" data-options="e18ti882ha" style="position: absolute; top: 270%; left: 270%;"></div>
+        <div class="hoverArea" data-options="e18ti882ja" style="position: absolute; top: 280%; left: 280%;"></div>
+        <div class="hoverArea" data-options="e18ti882ka" style="position: absolute; top: 290%; left: 290%;"></div>
+        <div class="hoverArea" data-options="e18ti882la" style="position: absolute; top: 300%; left: 300%;"></div>
+    </div>
+    <div id="chartContainer" style="margin-top: 20px;"></div>
+    <script src="main.js"></script>
+</body>
+
+</html>

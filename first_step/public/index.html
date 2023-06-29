@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Experiment</title>
+   
+</head>
+
+<body>
+<button onclick="inntext()">innerText로 표시하기</button>
+<button onclick="innhtml()">innerHTML로 표시하기</button>
+<h1>실험 </h1>
+<div id="current"></div>
+    <select id="columns" multiple> 
+        <option value="option1" selected>Option 1</option>
+        <option value="option2" selected>Option 2</option>
+        <option value="option3">Option 3</option>
+    </select>
+    <div id="go"></div>
+<script src="main.js"></script>
+<script>
+    var now = new Date();
+
+    function inntext(){
+        document.getElementById("current").innerText = now;
+    }
+    function innhtml() {
+        document.getElementById("current").innerHTML = "<h2>" + now + "</h2>";
+    }
+</script>
+
+</body>
+</html>
+
+

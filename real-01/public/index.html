@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./static/nflux/css/reset_css.css">
+    <link rel="stylesheet" type="text/css" href="./static/nflux/css/style.css">
+    <link href="/static/css/app.ce573070bfc25f04c4612c7ce579338e.css" rel="stylesheet">
+    <style>
+        #wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-gap: 1rem;
+        }
+        #container {
+            width: 1200px;
+            margin: 20px auto;
+        }
+        .pig_contents_inner .pis_tit {
+            margin-bottom: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(85, 219, 127, 1);
+            text-align: center;
+        }
+        .pis_tag li {
+            width: 100%;
+            padding: 0 0.5rem;
+            font-size: 0.6rem;
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+        .Asset {
+            position: relative;
+            width: 1300px;
+            height: auto;
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            clear: both;
+            top: 210px;
+            left: 35px;
+            background-image: url('pis.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .hoverArea {
+            display: inline-block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="36" height="34" viewBox="0 0 36 34" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(%23filter0_d_59_472)"><path d="M30.6921 17C30.6921 23.9559 24.8233 29.62 17.5521 29.62C10.2809 29.62 4.4121 23.9559 4.4121 17C4.4121 10.0441 10.2809 4.38 17.5521 4.38C24.8233 4.38 30.6921 10.0441 30.6921 17Z" stroke="%2355DB7F" stroke-opacity="0.8" stroke-width="0.76"/><ellipse cx="17.5521" cy="17" rx="13.52" ry="13" fill="%232A8744" fill-opacity="0.65"/><path d="M15.2308 24L9.3108 9.99998H14.3908L19.2108 21.82H16.1908L21.1508 9.99998H25.7908L19.8708 24H15.2308Z" fill="white"/></g><defs><filter id="filter0_d_59_472" x="0.0321045" y="0" width="35.04" height="34" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0.126852 0 0 0 0 1 0 0 0 0 0.403349 0 0 0 0.35 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_59_472"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_59_472" result="shape"/></filter></defs></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-radius: 100%;
+        }
+        .hoverarea_t {
+            display: inline-block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(%23filter0_d_51_30213)"><circle cx="17.974" cy="17.2759" r="12.62" stroke="%2355DB7F" stroke-opacity="0.8" stroke-width="0.76"/><circle cx="17.974" cy="17.2759" r="13" fill="%232A8744" fill-opacity="0.65"/><path d="M15.154 24.2759V13.9359H11.054V10.2759H23.974V13.9359H19.874V24.2759H15.154Z" fill="white"/></g><defs><filter id="filter0_d_51_30213" x="0.973969" y="0.275879" width="34" height="34" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0.126852 0 0 0 0 1 0 0 0 0 0.403349 0 0 0 0.35 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_51_30213"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_51_30213" result="shape"/></filter></defs></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-radius: 100%;
+          }
+        .hoverarea_p {
+            display: inline-block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('icon_p_green.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-radius: 100%;
+        }
+        .dataOptionsText {
+            position: absolute;
+            color: brown;
+            white-space: nowrap;
+            font-size: 12px; /* Adjust the font size as needed */
+            text-align: center;
+            bottom: 10px; /* Adjust the vertical position as needed */
+            left: 10px;
+            transform: translateX(-50%);
+        }
+        #chartContainer {
+            position: fixed;
+            width: 500px;
+            height: 400px;
+            left: 720px; /* Adjust the left position as needed */
+            top: 600px; /* Adjust the top position as needed */
+        }
+    </style>
+    <title>Data Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@latest/plotly.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+</head>
+    <title>Data Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@latest/plotly.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="pig_contentsBox_type01" style="float: left; width: 300px;">
+            <div class="pig_contents_inner" style="left: clear;">
+                <ul class="pis_tag_type02">
+                    <li>
+                        <img src="magnifying-glass.png" alt="" style="width: 50px;">
+                    </li> 
+                    <li class="pis_data" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div class="pis_tit" style="text-align: center;">정상 41개</div> 
+                        <div class="pis_tit" style="color: red;">이상 1개</div> 
+                    </li>
+                </ul> 
+            </div>
+        </div>
+
+        <div class="pig_contentsBox_type01" style="float: left; left: 320px; width: 300px;">
+            <div class="pig_contents_inner">
+                <ul class="pis_tag_type02">
+                    <li>
+                        <img src="vibration.png" alt="" style="width: 50px;">
+                    </li> 
+                    <li class="pis_data" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div class="pis_tit">정상 10개</div> 
+                        <div class="pis_tit" style="color: red;">이상 1개</div> 
+                    </li>
+                </ul> 
+            </div>
+        </div>
+
+        <div class="pig_contentsBox_type01" style="float: left; left: 640px; width: 300px;">
+            <div class="pig_contents_inner">
+                <ul class="pis_tag_type02">
+                    <li>
+                        <img src="temperature.png" alt="" style="width: 50px;">
+                    </li> 
+                    <li class="pis_data" style="display: flex; flex-direction: column; justify-content: center;">
+                        <div class="pis_tit" style="text-align: center;">정상 22개</div> 
+                        <div class="pis_tit" style="color: red; width: 100px; height: 15px;"> </div>
+                    </li>
+                </ul> 
+            </div>
+        </div>
+
+        <div class="pig_contentsBox_type01" style="float: left; left: 960px; width: 300px;">
+            <div class="pig_contents_inner">
+                <ul class="pis_tag_type02">
+                    <li>
+                        <img src="pressure.png" alt="" style="width: 50px;">
+                    </li> 
+                    <li class="pis_data" style="display: flex; flex-direction: column; justify-content: center;">
+                        <div class="pis_tit" style="text-align: center;">정상 9개</div> 
+                        <div class="pis_tit" style="color: red; width: 100px; height: 11px;"> </div>
+                    </li>
+                </ul> 
+            </div>
+        </div>
+    </div>
+
+    <div id="hiddenChartContainer" style="display: none; justify-content: center; align-items: center;"></div>
+    <div class="Asset" style="position: relative; margin: 50px auto;">      
+        <img src="pis.png" alt="back_ground" style="width: 100%; clear: both; justify-content: center; align-items: center;">
+
+        <!-- <div class="dataOptionsText" id="dataOptionsText1">E18PI053BA</div>
+        <div class="dataOptionsText" id="dataOptionsText2">E18PI057A</div>
+        <div class="dataOptionsText" id="dataOptionsText3">E18PI880AA</div>
+        <div class="dataOptionsText" id="dataOptionsText4">E18PI882HA</div>
+        <div class="dataOptionsText" id="dataOptionsText5">E18SI883AA</div>
+        <div class="dataOptionsText" id="dataOptionsText6">E18SI883BA</div>
+        <div class="dataOptionsText" id="dataOptionsText7">E18TI256A</div>
+        <div class="dataOptionsText" id="dataOptionsText8">E18TI257AA</div>
+        <div class="dataOptionsText" id="dataOptionsText9">E18TI284A</div>
+        <div class="dataOptionsText" id="dataOptionsText10">E18TI881BA</div>
+        <div class="dataOptionsText" id="dataOptionsText11">E18TI881CA</div>
+        <div class="dataOptionsText" id="dataOptionsText12">E18TI881DA</div>
+        <div class="dataOptionsText" id="dataOptionsText13">E18TI881EA</div>
+        <div class="dataOptionsText" id="dataOptionsText14">E18TI881FA</div>
+        <div class="dataOptionsText" id="dataOptionsText15">E18TI881GA</div>
+        <div class="dataOptionsText" id="dataOptionsText16">E18TI881HA</div>
+        <div class="dataOptionsText" id="dataOptionsText17">E18TI881JA</div>
+        <div class="dataOptionsText" id="dataOptionsText18">E18TI881KA</div>
+        <div class="dataOptionsText" id="dataOptionsText19">E18TI881LA</div>
+        <div class="dataOptionsText" id="dataOptionsText20">E18TI882AA</div>
+        <div class="dataOptionsText" id="dataOptionsText21">E18TI882BA</div>
+        <div class="dataOptionsText" id="dataOptionsText22">E18TI882CA</div>
+        <div class="dataOptionsText" id="dataOptionsText23">E18TI882DA</div>
+        <div class="dataOptionsText" id="dataOptionsText24">E18TI882EA</div>
+        <div class="dataOptionsText" id="dataOptionsText25">E18TI882FA</div>
+        <div class="dataOptionsText" id="dataOptionsText26">E18TI882GA</div>
+        <div class="dataOptionsText" id="dataOptionsText27">E18TI882HA</div>
+        <div class="dataOptionsText" id="dataOptionsText28">E18TI882JA</div>
+        <div class="dataOptionsText" id="dataOptionsText29">E18TI882KA</div>
+        <div class="dataOptionsText" id="dataOptionsText30">E18VXI881AA</div>
+        <div class="dataOptionsText" id="dataOptionsText31">E18VXI881CA</div>
+        <div class="dataOptionsText" id="dataOptionsText32">E18VXI882AA</div>
+        <div class="dataOptionsText" id="dataOptionsText33">E18VXI882CA</div>
+        <div class="dataOptionsText" id="dataOptionsText34">E18VYI881BA</div>
+        <div class="dataOptionsText" id="dataOptionsText35">E18VYI881DA</div>
+        <div class="dataOptionsText" id="dataOptionsText36">E18VYI882BA</div>
+        <div class="dataOptionsText" id="dataOptionsText37">E18VYI882DA</div>
+        <div class="dataOptionsText" id="dataOptionsText38">E18ZI881AA</div>
+        <div class="dataOptionsText" id="dataOptionsText39">E18ZI881BA</div>
+        <div class="dataOptionsText" id="dataOptionsText40">E18ZI882AA</div>
+        <div class="dataOptionsText" id="dataOptionsText41">E18ZI882BA</div>
+        <div class="dataOptionsText" id="dataOptionsText42">E18TI882LA</div> -->
+
+        <div class="hoverarea_p" data-options="e18pi053ba" style="position: absolute;"></div>
+        <div class="hoverarea_p" data-options="e18pi057a" style="position: absolute;"></div>
+        <div class="hoverarea_p" data-options="e18pi880aa" style="position: absolute;"></div>
+        <div class="hoverarea_p" data-options="e18pi882ha" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18si883aa" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18si883ba" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti256a" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti257aa" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti284a" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti881ba" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti881ca" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti881da" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti881ea" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti881fa" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti881ga" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti881ha" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti881ja" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti881ka" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti881la" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882aa" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882ba" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882ca" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882da" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882ea" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882fa" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882ga" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882ha" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882ja" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882ka" style="position: absolute;"></div>
+        <div class="hoverarea_t" data-options="e18ti882la" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18vxi881aa" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18vxi881ca" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18vxi882aa" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18vxi882ca" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18vyi881ba" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18vyi881da" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18vyi882ba" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18vyi882da" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18zi881aa" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18zi881ba" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18zi882aa" style="position: absolute;"></div>
+        <div class="hoverArea" data-options="e18zi882ba" style="position: absolute;"></div>
+
+
+
+        <!-- <div class="hoverArea" data-options="e18pi053ba" style="position: absolute; top: 20%; left: 20.0%;"></div>
+        <div class="hoverArea" data-options="e18pi057a" style="position: absolute; top: 0%; left: 33.2%;"></div>
+        <div class="hoverArea" data-options="e18pi880aa" style="position: absolute; top: 30%; left: 30%;"></div>
+        <div class="hoverArea" data-options="e18pi882ha" style="position: absolute; top: 40%; left: 40%;"></div>
+        <div class="hoverArea" data-options="e18si883aa" style="position: absolute; top: 50%; left: 50%;"></div>
+        <div class="hoverArea" data-options="e18si883ba" style="position: absolute; top: 60%; left: 60%;"></div>
+        <div class="hoverArea" data-options="e18ti256a" style="position: absolute; top: 30%; left: 15%;"></div>
+        <div class="hoverArea" data-options="e18ti257aa" style="position: absolute; top: 0%; left: 31.8%;"></div>
+        <div class="hoverArea" data-options="e18ti284a" style="position: absolute; top: 90%; left: 90%;"></div>
+        <div class="hoverArea" data-options="e18ti881ba" style="position: absolute; top: 52.5%; left: 5%;"></div>
+        <div class="hoverArea" data-options="e18ti881ca" style="position: absolute; top: 51%; left: 47.2%;"></div>
+        <div class="hoverArea" data-options="e18ti881da" style="position: absolute; top: 55.5%; left: 47.2%;"></div>
+        <div class="hoverArea" data-options="e18ti881ea" style="position: absolute; top: 130%; left: 130%;"></div>
+        <div class="hoverArea" data-options="e18ti881fa" style="position: absolute; top: 140%; left: 140%;"></div>
+        <div class="hoverArea" data-options="e18ti881ga" style="position: absolute; top: 150%; left: 150%;"></div>
+        <div class="hoverArea" data-options="e18ti881ha" style="position: absolute; top: 160%; left: 160%;"></div>
+        <div class="hoverArea" data-options="e18ti881ja" style="position: absolute; top: 170%; left: 170%;"></div>
+        <div class="hoverArea" data-options="e18ti881ka" style="position: absolute; top: 180%; left: 180%;"></div>
+        <div class="hoverArea" data-options="e18ti881la" style="position: absolute; top: 190%; left: 190%;"></div>
+        <div class="hoverArea" data-options="e18ti882aa" style="position: absolute; top: 49.5%; left: 98%;"></div>
+        <div class="hoverArea" data-options="e18ti882ba" style="position: absolute; top: 210%; left: 210%;"></div>
+        <div class="hoverArea" data-options="e18ti882ca" style="position: absolute; top: 220%; left: 220%;"></div>
+        <div class="hoverArea" data-options="e18ti882da" style="position: absolute; top: 230%; left: 230%;"></div>
+        <div class="hoverArea" data-options="e18ti882ea" style="position: absolute; top: 240%; left: 240%;"></div>
+        <div class="hoverArea" data-options="e18ti882fa" style="position: absolute; top: 250%; left: 250%;"></div>
+        <div class="hoverArea" data-options="e18ti882ga" style="position: absolute; top: 260%; left: 260%;"></div>
+        <div class="hoverArea" data-options="e18ti882ha" style="position: absolute; top: 270%; left: 270%;"></div>
+        <div class="hoverArea" data-options="e18ti882ja" style="position: absolute; top: 280%; left: 280%;"></div>
+        <div class="hoverArea" data-options="e18ti882ka" style="position: absolute; top: 45%; left: 65%;"></div>
+        <div class="hoverArea" data-options="e18vxi881aa" style="position: absolute; top: 48%; left: 5%;"></div>
+        <div class="hoverArea" data-options="e18vxi881ca" style="position: absolute; top: 60%; left: 40%;"></div>
+        <div class="hoverArea" data-options="e18vxi882aa" style="position: absolute; top: 55%; left: 60%;"></div>
+        <div class="hoverArea" data-options="e18vxi882ca" style="position: absolute; top: 55%; left: 58%;"></div>
+        <div class="hoverArea" data-options="e18vyi881ba" style="position: absolute; top: 55%; left: 7%;"></div>
+        <div class="hoverArea" data-options="e18vyi881da" style="position: absolute; top: 60%; left: 38%;"></div>
+        <div class="hoverArea" data-options="e18vyi882ba" style="position: absolute; top: 40%; left: 60%;"></div>
+        <div class="hoverArea" data-options="e18vyi882da" style="position: absolute; top: 55%; left: 60%;"></div>
+        <div class="hoverArea" data-options="e18zi881aa" style="position: absolute; top: 50%; left: 5%;"></div>
+        <div class="hoverArea" data-options="e18zi881ba" style="position: absolute; top: 49%; left: 4%;"></div>
+        <div class="hoverArea" data-options="e18zi882aa" style="position: absolute; top: 42%; left: 98%;"></div>
+        <div class="hoverArea" data-options="e18zi882ba" style="position: absolute; top: 50%; left: 97%;"></div>
+        <div class="hoverArea" data-options="e18ti882la" style="position: absolute; top: 300%; left: 300%; clear: both;"></div> -->
+    </div>
+    <div id="chartContainer" style="position: fixed; width: 500px; height: 400px;"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var hoverAreas = Array.from(document.querySelectorAll('.hoverArea, .hoverarea_t, .hoverarea_p'));
+            var chartContainer = document.getElementById('chartContainer');
+            var chartPosition = { left: 720, top: 600 }; // Set initial chart position
+    
+            // Sort hoverAreas based on data-options in alphabetical order
+            hoverAreas.sort(function(a, b) {
+                return a.getAttribute('data-options').localeCompare(b.getAttribute('data-options'));
+            });
+    
+            // Assign initial positions vertically
+            var verticalSpacing = 50; // adjust the spacing between hover areas as needed
+            hoverAreas.forEach(function(hoverArea, index) {
+                // Check if there are stored positions
+                var savedPosition = localStorage.getItem(hoverArea.getAttribute('data-options'));
+                if (savedPosition) {
+                    savedPosition = JSON.parse(savedPosition);
+                    hoverArea.style.left = savedPosition.left + 'px';
+                    hoverArea.style.top = savedPosition.top + 'px';
+                } else {
+                    hoverArea.style.top = (index * verticalSpacing) + 'px';
+                }
+            });
+    
+            hoverAreas.forEach(function(hoverArea) {
+                var offsetX, offsetY, mouseX, mouseY;
+                var isMouseDown = false;
+    
+                hoverArea.addEventListener('mousedown', function(e) {
+                    isMouseDown = true;
+                    offsetX = e.clientX - hoverArea.offsetLeft;
+                    offsetY = e.clientY - hoverArea.offsetTop;
+                });
+    
+                document.addEventListener('mousemove', function(e) {
+                    if (isMouseDown) {
+                        mouseX = e.clientX;
+                        mouseY = e.clientY;
+                        hoverArea.style.left = (mouseX - offsetX) + 'px';
+                        hoverArea.style.top = (mouseY - offsetY) + 'px';
+                    }
+                });
+    
+                document.addEventListener('mouseup', function() {
+                    if (isMouseDown) {
+                        isMouseDown = false;
+    
+                        // Save the positions to localStorage when dragging stops
+                        var position = {
+                            left: mouseX - offsetX,
+                            top: mouseY - offsetY
+                        };
+                        localStorage.setItem(hoverArea.getAttribute('data-options'), JSON.stringify(position));
+                    }
+                });
+    
+                hoverArea.addEventListener('mouseleave', function() {
+                    isMouseDown = false;
+                });
+    
+                hoverArea.addEventListener('mouseover', function() {
+                    var savedPosition = localStorage.getItem(hoverArea.getAttribute('data-options'));
+    
+                    if (savedPosition) {
+                        savedPosition = JSON.parse(savedPosition);
+                        chartPosition.left = savedPosition.left;
+                        chartPosition.top = savedPosition.top;
+                    }
+                });
+            });
+    
+            var isChartDragging = false;
+            var chartOffsetX, chartOffsetY;
+    
+            chartContainer.addEventListener('mousedown', function(e) {
+                isChartDragging = true;
+                chartOffsetX = e.clientX - chartContainer.offsetLeft;
+                chartOffsetY = e.clientY - chartContainer.offsetTop;
+            });
+    
+            document.addEventListener('mousemove', function(e) {
+                if (isChartDragging) {
+                    var mouseX = e.clientX;
+                    var mouseY = e.clientY;
+                    chartPosition.left = mouseX - chartOffsetX;
+                    chartPosition.top = mouseY - chartOffsetY;
+                    chartContainer.style.left = chartPosition.left + 'px';
+                    chartContainer.style.top = chartPosition.top + 'px';
+                }
+            });
+    
+            document.addEventListener('mouseup', function() {
+                isChartDragging = false;
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var dataOptionsLabels = Array.from(document.querySelectorAll('.dataOptionsText'));
+            var chartContainer = document.getElementById('chartContainer');
+    
+            // Sort dataOptionsLabels based on their associated data-options values in alphabetical order
+            dataOptionsLabels.sort(function(a, b) {
+                var aDataOptions = a.parentElement.parentElement.getAttribute('data-options');
+                var bDataOptions = b.parentElement.parentElement.getAttribute('data-options');
+                return aDataOptions.localeCompare(bDataOptions);
+            });
+    
+            // Assign initial positions vertically
+            var verticalSpacing = 50; // adjust the spacing between labels as needed
+            dataOptionsLabels.forEach(function(label, index) {
+                // Check if there are stored positions
+                var savedPosition = localStorage.getItem(label.parentElement.parentElement.getAttribute('data-options'));
+                if (savedPosition) {
+                    savedPosition = JSON.parse(savedPosition);
+                    label.style.left = savedPosition.left + 'px';
+                    label.style.top = savedPosition.top + 'px';
+                } else {
+                    label.style.top = (index * verticalSpacing) + 'px';
+                }
+            });
+    
+            var isLabelDragging = false;
+            var labelOffsetX, labelOffsetY;
+    
+            dataOptionsLabels.forEach(function(label) {
+                var parentHoverArea = label.parentElement.parentElement;
+    
+                label.addEventListener('mousedown', function(e) {
+                    isLabelDragging = true;
+                    labelOffsetX = e.clientX - label.offsetLeft;
+                    labelOffsetY = e.clientY - label.offsetTop;
+                });
+    
+                document.addEventListener('mousemove', function(e) {
+                    if (isLabelDragging) {
+                        var mouseX = e.clientX;
+                        var mouseY = e.clientY;
+                        label.style.left = (mouseX - labelOffsetX) + 'px';
+                        label.style.top = (mouseY - labelOffsetY) + 'px';
+                    }
+                });
+    
+                document.addEventListener('mouseup', function() {
+                    if (isLabelDragging) {
+                        isLabelDragging = false;
+    
+                        // Save the positions to localStorage when dragging stops
+                        var position = {
+                            left: parseFloat(label.style.left),
+                            top: parseFloat(label.style.top)
+                        };
+                        localStorage.setItem(parentHoverArea.getAttribute('data-options'), JSON.stringify(position));
+                    }
+                });
+    
+                label.addEventListener('mouseleave', function() {
+                    isLabelDragging = false;
+                });
+    
+                label.addEventListener('mouseover', function() {
+                    var savedPosition = localStorage.getItem(parentHoverArea.getAttribute('data-options'));
+    
+                    if (savedPosition) {
+                        savedPosition = JSON.parse(savedPosition);
+                        chartContainer.style.left = savedPosition.left + 'px';
+                        chartContainer.style.top = savedPosition.top + 'px';
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="main.js"></script>
+    <script>
+        interact('.dataOptionsText')
+          .draggable({
+            modifiers: [
+              interact.modifiers.restrictRect({
+                restriction: 'parent',
+                endOnly: true,
+              }),
+            ],
+            listeners: {
+              start(event) {
+                event.interactable.dataset.startX = String(event.target.getBoundingClientRect().left);
+                event.interactable.dataset.startY = String(event.target.getBoundingClientRect().top);
+              },
+              move(event) {
+                const target = event.target;
+                const startX = parseFloat(target.dataset.startX || '0');
+                const startY = parseFloat(target.dataset.startY || '0');
+                const x = (parseFloat(event.delta.x) || 0) + startX;
+                const y = (parseFloat(event.delta.y) || 0) + startY;
+      
+                target.style.transform = `translate(${x}px, ${y}px)`;
+              },
+              end(event) {
+                event.target.style.transform = '';
+              },
+            },
+          });
+      </script>
+    
+
+<!-- Create separate div elements for each text -->
+<div id="draggable-0" class="draggable">종합</div>
+<div id="draggable-1" class="draggable">진동</div>
+<div id="draggable-2" class="draggable">온도</div>
+<div id="draggable-3" class="draggable">압력</div>
+
+<script>
+// Get all draggable elements
+const draggableElements = document.querySelectorAll('.draggable');
+
+draggableElements.forEach((draggable, i) => {
+  // Apply some basic styles
+  draggable.style.width = '100px';
+  draggable.style.height = '20px';
+  draggable.style.background = 'transparent'; // Set background to transparent
+  draggable.style.padding = '10px';
+  draggable.style.position = 'absolute';
+  draggable.style.cursor = 'move';
+  draggable.style.zIndex = '1000'; // Add high z-index to make sure it's over other elements
+
+  // Load positions from localStorage if they exist
+  const savedPosition = localStorage.getItem(`draggable-${i}-position`);
+  if (savedPosition) {
+    const [left, top] = savedPosition.split(',');
+    draggable.style.left = `${left}px`;
+    draggable.style.top = `${top}px`;
+  }
+
+  // Add draggable attribute
+  draggable.draggable = true;
+
+  // Attach event listeners
+  draggable.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('text/plain', draggable.id);
+  });
+});
+
+// Add event listener to the body to handle drop
+document.body.addEventListener('dragover', (e) => {
+  e.preventDefault();
+});
+
+document.body.addEventListener('drop', (e) => {
+  e.preventDefault();
+
+  const id = e.dataTransfer.getData('text');
+  const draggableElement = document.getElementById(id);
+
+  // Update position
+  draggableElement.style.left = `${e.clientX}px`;
+  draggableElement.style.top = `${e.clientY}px`;
+
+  // Save position to localStorage
+  localStorage.setItem(`${id}-position`, `${e.clientX},${e.clientY}`);
+});
+</script>
+
+
+
+</body>
+
+</html>

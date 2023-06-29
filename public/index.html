@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .Asset {
+            position: relative;
+            width: 80%; /* or any other percentage or pixel value you want */
+            height: auto; /* maintain aspect ratio */
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hoverArea {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 0, 0, 0.5); /* Red background with 50% opacity */
+            border-radius: 50%; /* Make it circular */
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background-color: white;
+            border: 1px solid #1a1a1a;
+            padding: 10px;
+            z-index: 100;
+        }
+        .hoverArea:hover + .tooltip {
+            display: block;
+        }
+    </style>
+    <title>Data Visualization</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div id="controls">
+        <label for="columns">Select Value Columns:</label>
+        <select id="columns" multiple>
+            <option value="e18pi053ba">e18pi053ba</option>
+            <option value="e18pi057a">e18pi057a</option>
+            <option value="e18pi880aa">e18pi880aa</option>
+            <option value="e18pi882ha">e18pi882ha</option>
+            <option value="e18si883aa">e18si883aa</option>
+            <option value="e18si883ba">e18si883ba</option>
+            <option value="e18ti256a">e18ti256a</option>
+            <option value="e18ti257aa">e18ti257aa</option>
+            <option value="e18ti284a">e18ti284a</option>
+            <option value="e18ti881ba">e18ti881ba</option>
+            <option value="e18ti881ca">e18ti881ca</option>
+            <option value="e18ti881da">e18ti881da</option>
+            <option value="e18ti881ea">e18ti881ea</option>
+            <option value="e18ti881fa">e18ti881fa</option>
+            <option value="e18ti881ga">e18ti881ga</option>
+            <option value="e18ti881ha">e18ti881ha</option>
+            <option value="e18ti881ja">e18ti881ja</option>
+            <option value="e18ti881ka">e18ti881ka</option>
+            <option value="e18ti881la">e18ti881la</option>
+            <option value="e18ti882aa">e18ti882aa</option>
+            <option value="e18ti882ba">e18ti882ba</option>
+            <option value="e18ti882ca">e18ti882ca</option>
+            <option value="e18ti882da">e18ti882da</option>
+            <option value="e18ti882ea">e18ti882ea</option>
+            <option value="e18ti882fa">e18ti882fa</option>
+            <option value="e18ti882ga">e18ti882ga</option>
+            <option value="e18ti882ha">e18ti882ha</option>
+            <option value="e18ti882ja">e18ti882ja</option>
+            <option value="e18ti882ka">e18ti882ka</option>
+            <option value="e18ti882la">e18ti882la</option>
+        </select>
+    </div>
+<div id="chartContainer"></div>
+<div class="Asset">
+    <img src="pis.png" alt="back_ground" style="width: 100%;">
+    <div class="hoverArea"></div>
+    <div class="tooltip">Tooltip content goes here</div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
+
+
