@@ -8,13 +8,24 @@ function drawChart(containerId, selectedOptions) {
     fetch(`${url}?${startDateParam}`)
         .then(response => response.json())
         .then(data => {
+
             console.log("Client received data:", data);
+
             data.forEach(d => {
                 d.time = new Date(d.time);
                 for (let key in d) {
                     if (selectedOptions.includes(key)) d[key] = +d[key];
                 }
             });
+
+
+
+
+
+
+
+
+
 
             const lines = selectedOptions.map(option => {
                 return {
@@ -26,10 +37,70 @@ function drawChart(containerId, selectedOptions) {
             });
 
             const selectedOptionsString = selectedOptions.join(', ');
+            const hoverAreas = document.querySelectorAll('.hoverarea_p, .hoverArea, .hoverarea_t');
+
+           
+
+            let exceededCount = 0;
+
+            hoverAreas.forEach(element => {
+                const upperThreshold = parseFloat(element.getAttribute('data-upper-threshold'));
+                const lowerThreshold = parseFloat(element.getAttribute('data-lower-threshold'));
+                const measurementValue = data[data.length - 1][element.getAttribute('data-options')];
+            
+                if (measurementValue > upperThreshold || measurementValue < lowerThreshold) {
+                    exceededCount++;
+                }
+            });
+            
+            // Use the exceededCount variable anywhere in the program
+            console.log(exceededCount);
+
+            const allElement = document.querySelector('#all');
+if (allElement) {
+    allElement.textContent = `이상 ${exceededCount}개`;
+    allElement.style.fontSize = '15px'; // Adjust the font size as needed
+}
+
+
+
+
+
+
+            const shapes = Array.from(hoverAreas).filter(element => {
+                return selectedOptions.includes(element.getAttribute('data-options'));
+            }).map(element => {
+                const upperThreshold = element.getAttribute('data-upper-threshold');
+                const lowerThreshold = element.getAttribute('data-lower-threshold');
+                
+                return [
+                    {
+                        type: 'line',
+                        xref: 'x',
+                        yref: 'y',
+                        x0: data[0].time,
+                        x1: data[data.length - 1].time,
+                        y0: upperThreshold,
+                        y1: upperThreshold,
+                        line: { color: 'red', width: 2, dash: 'dot' }
+                    },
+                    {
+                        type: 'line',
+                        xref: 'x',
+                        yref: 'y',
+                        x0: data[0].time,
+                        x1: data[data.length - 1].time,
+                        y0: lowerThreshold,
+                        y1: lowerThreshold,
+                        line: { color: 'blue', width: 2, dash: 'dot' }
+                    }
+                ];
+            }).flat();
+
             const layout = {
-                title: `센서 ${selectedOptionsString}의 측정값`,
+                title: `Sensor ${selectedOptionsString} Measurements`,
                 xaxis: {
-                    title: '일자',
+                    title: 'Date',
                     rangeselector: {
                         buttons: [
                             {
@@ -53,10 +124,11 @@ function drawChart(containerId, selectedOptions) {
                         ]
                     }
                 },
-                yaxis: { title: '측정값' },
+                yaxis: { title: 'Measurement Value' },
                 width: 950,
                 height: 350,
-                autosize: true
+                autosize: true,
+                shapes: shapes
             };
 
             Plotly.newPlot(containerId, lines, layout);
@@ -96,6 +168,12 @@ document.querySelectorAll('.hoverArea, .hoverarea_t, .hoverarea_p').forEach(hove
     dataOptionsText.style.left = '0px';
     dataOptionsText.style.top = '0px';
 });
+
+
+
+
+
+
 
 
 

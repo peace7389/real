@@ -107,6 +107,7 @@
 
 <body>
 
+
     <div id="container">
         <div class="pig_contentsBox_type01" style="float: left; width: 300px;">
             <div class="pig_contents_inner" style="left: clear;">
@@ -116,7 +117,7 @@
                     </li> 
                     <li class="pis_data" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                         <div class="pis_tit" style="text-align: center;">정상 41개</div> 
-                        <div class="pis_tit" style="color: red;">이상 1개</div> 
+                        <div class="pis_tit" id="all" style="color: red;">이상 1개</div> 
                     </li>
                 </ul> 
             </div>
@@ -212,48 +213,49 @@
         <div class="dataOptionsText" id="dataOptionsText41">E18ZI882BA</div>
         <div class="dataOptionsText" id="dataOptionsText42">E18TI882LA</div> -->
 
-        <div class="hoverarea_p" data-options="e18pi053ba" style="position: absolute;"></div>
-        <div class="hoverarea_p" data-options="e18pi057a" style="position: absolute;"></div>
-        <div class="hoverarea_p" data-options="e18pi880aa" style="position: absolute;"></div>
-        <div class="hoverarea_p" data-options="e18pi882ha" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18si883aa" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18si883ba" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti256a" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti257aa" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti284a" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti881ba" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti881ca" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti881da" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti881ea" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti881fa" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti881ga" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti881ha" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti881ja" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti881ka" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti881la" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882aa" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882ba" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882ca" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882da" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882ea" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882fa" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882ga" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882ha" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882ja" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882ka" style="position: absolute;"></div>
-        <div class="hoverarea_t" data-options="e18ti882la" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18vxi881aa" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18vxi881ca" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18vxi882aa" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18vxi882ca" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18vyi881ba" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18vyi881da" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18vyi882ba" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18vyi882da" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18zi881aa" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18zi881ba" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18zi882aa" style="position: absolute;"></div>
-        <div class="hoverArea" data-options="e18zi882ba" style="position: absolute;"></div>
+        <div class="hoverarea_p" data-options="e18pi053ba" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_p" data-options="e18pi057a" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_p" data-options="e18pi880aa" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_p" data-options="e18pi882ha" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18si883aa" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18si883ba" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti256a" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti257aa" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti284a" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti881ba" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti881ca" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti881da" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti881ea" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti881fa" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti881ga" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti881ha" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti881ja" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti881ka" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti881la" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882aa" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882ba" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882ca" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882da" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882ea" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882fa" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882ga" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882ha" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882ja" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882ka" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverarea_t" data-options="e18ti882la" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18vxi881aa" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18vxi881ca" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18vxi882aa" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18vxi882ca" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18vyi881ba" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18vyi881da" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18vyi882ba" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18vyi882da" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18zi881aa" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18zi881ba" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18zi882aa" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+<div class="hoverArea" data-options="e18zi882ba" data-upper-threshold="50" data-lower-threshold="5" style="position: absolute;"></div>
+
 
 
 
